@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Vida Pet - Cadastro</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    form {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 900px;
+    }
+    .linha {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    .campo {
+      flex: 1;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vida Pet - Cadastro</h1>
+
+  <form>
+    <h2>Dados do Tutor</h2>
+    <div class="linha">
+      <div class="campo">
+        <label>Nome Completo:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Telefone:</label>
+        <input type="tel">
+      </div>
+    </div>
+
+    <h2>Dados do Pet</h2>
+    <div class="linha">
+      <div class="campo">
+        <label>Nome do Pet:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Raça:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Idade (anos):</label>
+        <input type="number">
+      </div>
+    </div>
+
+    <div class="linha">
+      <div class="campo">
+        <label>Observações:</label>
+        <textarea rows="3"></textarea>
+      </div>
+    </div>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+</body>
+</html>

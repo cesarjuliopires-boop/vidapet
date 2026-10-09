@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Vida Pet - Sistema</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2, h3, h4 {
+      color: #0000ff;
+    }
+    .menu {
+      background-color: #0000ff;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #000000;
+    }
+    .menu button {
+      background-color: #ffffff;
+      color: #0000ff;
+      border: 1px solid #000000;
+      padding: 8px 15px;
+      font-weight: bold;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .menu button.active {
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .aba {
+      display: none;
+      border: 1px solid #000000;
+      padding: 15px;
+      background-color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .aba.ativa {
+      display: block;
+    }
+    .sub-menu {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 10px;
+    }
+    .sub-menu button {
+      background-color: #0000ff;
+      color: #ffffff;
+      border: 1px solid #000000;
+      padding: 5px 10px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .sub-menu button.active {
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .sub-aba {
+      display: none;
+      border: 1px solid #000000;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    .sub-aba.ativa {
+      display: block;
+    }
+    .campo {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #000000;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    button.btn-principal {
+      background-color: #0000ff;
+      color: #ffffff;
+      border: 1px solid #000000;
+      padding: 10px 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #000000;
+    }
+    th {
+      background-color: #0000ff;
+      color: #ffffff;
+      padding: 8px;
+      text-align: left;
+    }
+    td {
+      padding: 8px;
+    }
+    .caixa-denuncia {
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      padding: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin-top: 10px;
+      color: #000000;
+      min-height: 80px;
+    }
+    .card-pet {
+      border: 1px solid #000000;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vida Pet - Cadastro e Controle</h1>
+
+  <div class="menu">
+    <button onclick="mudarAba('cadastro')" id="btn-cadastro" class="active">Cadastros</button>
+    <button onclick="mudarAba('medicina')" id="btn-medicina">Medicina</button>
+    <button onclick="mudarAba('denuncia')" id="btn-denuncia">Denúncia</button>
+    <button onclick="mudarAba('resgate')" id="btn-resgate">Resgate e Adoção</button>
+  </div>
+
+  <div id="aba-cadastro" class="aba ativa">
+    <h2>Área de Cadastros</h2>
+    <h3>Dados do Tutor</h3>
+    <form>
+      <div class="campo">
+        <label>Nome Completo:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Telefone:</label>
+        <input type="tel">
+      </div>
+
+      <h3>Dados do Pet</h3>
+      <div class="campo">
+        <label>Nome do Pet:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Espécie:</label>
+        <select>
+          <option>Cão</option>
+          <option>Gato</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Raça:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Idade (anos):</label>
+        <input type="number">
+      </div>
+      <div class="campo">
+        <label>Observações:</label>
+        <textarea rows="3"></textarea>
+      </div>
+
+      <button type="button" class="btn-principal">Cadastrar</button>
+    </form>
+
+    <h3>Lista de Cadastrados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pet</th>
+          <th>Espécie / Raça</th>
+          <th>Idade</th>
+          <th>Tutor</th>
+          <th>Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rex</td>
+          <td>Cão / Labrador</td>
+          <td>3</td>
+          <td>João Silva</td>
+          <td>(00) 00000-0000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="aba-medicina" class="aba">
+    <h2>Área de Medicina</h2>
+    <div class="sub-menu">
+      <button onclick="mudarSubAba('consulta')" id="subbtn-consulta" class="active">Consultas</button>
+      <button onclick="mudarSubAba('vacinacao')" id="subbtn-vacinacao">Vacinação</button>
+      <button onclick="mudarSubAba('cirurgica')" id="subbtn-cirurgica">Aba Cirúrgica</button>
+      <button onclick="mudarSubAba('financiamento')" id="subbtn-financiamento">Financiamento</button>
+    </div>
+
+    <div id="subaba-consulta" class="sub-aba ativa">
+      <h3>Agendamento de Consulta</h3>
+      <form>
+        <div class="campo">
+          <label>Nome do Pet:</label>
+          <input type="text">
+        </div>
+        <div class="campo">
+          <label>Data e Hora:</label>
+          <input type="datetime-local">
+        </div>
+        <div class="campo">
+          <label>Veterinário:</label>
+          <input type="text">
+        </div>
+        <div class="campo">
+          <label>Motivo:</label>
+          <textarea rows="2"></textarea>
+        </div>
+        <button type="button" class="btn-principal">Agendar Consulta</button>
+      </form>
+    </div>
+
+    <div id="subaba-vacinacao" class="sub-aba">
+      <h3>Controle de Vacinação</h3>
+      <div class="card-pet">
+        <h4>Vacina V10 / V8</h4>
+        <p>Para cães. Anual.</p>
+        <button type="button" class="btn-principal">Registrar Dose</button>
+      </div>
+      <div class="card-pet">
+        <h4>Antirrábica</h4>
+        <p>Para cães e gatos. Anual.</p>
+        <button type="button" class="btn-principal">Registrar Dose</button>
+      </div>
+      <div class="card-pet">
+        <h4>Vacina V4 / V5</h4>
+        <p>Para gatos. Anual.</p>
+        <button type="button" class="btn-principal">Registrar Dose</button>
+      </div>
+    </div>
+
+    <div id="subaba-cirurgica" class="sub-aba">
+      <h3>Agendamento Cirúrgico</h3>
+      <form>
+        <div class="campo">
+          <label>Nome do Pet:</label>
+          <input type="text">
+        </div>
+        <div class="campo">
+          <label>Tipo de Cirurgia:</label>
+          <select>
+            <option>Castração</option>
+            <option>Limpeza de Tártaro</option>
+            <option>Outra Cirurgia</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Data:</label>
+          <input type="date">
+        </div>
+        <button type="button" class="btn-principal">Agendar Cirurgia</button>
+      </form>
+    </div>
+
+    <div id="subaba-financiamento" class="sub-aba">
+      <h3>Aba de Financiamento / Vaquinha</h3>
+      <div class="card-pet">
+        <h4>Cirurgia do Pet "Thor"</h4>
+        <p>Meta: R$ 2000,00 | Arrecadado: R$ 1300,00</p>
+        <button type="button" class="btn-principal">Doar via PIX</button>
+      </div>
+      <div class="card-pet">
+        <h4>Tratamento da "Mel"</h4>
+        <p>Meta: R$ 800,00 | Arrecadado: R$ 320,00</p>
+        <button type="button" class="btn-principal">Doar via PIX</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="aba-denuncia" class="aba">
+    <h2>Aba de Denúncia (Mensagem Automática)</h2>
+    <form>
+      <div class="campo">
+        <label>Endereço do local:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Motivo da denúncia:</label>
+        <select>
+          <option>Abandono</option>
+          <option>Maus-tratos e Agressão</option>
+          <option>Sem comida e água</option>
+          <option>Preso em corrente curta</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Detalhes adicionais:</label>
+        <textarea rows="3"></textarea>
+      </div>
+    </form>
+
+    <h3>Mensagem Automática:</h3>
+    <div class="caixa-denuncia">DENÚNCIA DE MAUS-TRATOS
+
+Endereço: [Não informado]
+Motivo: Abandono
+Detalhes: [Sem detalhes]</div>
+
+    <br>
+    <button type="button" class="btn-principal">Copiar Texto</button>
+    <button type="button" class="btn-principal">Enviar por WhatsApp</button>
+  </div>
+
+  <div id="aba-resgate" class="aba">
+    <h2>Resgate e Adoção</h2>
+
+    <h3>Animais para Adoção</h3>
+    <div class="card-pet">
+      <h4>Pipoca (Fêmea - 1 ano)</h4>
+      <p>Resgatada, vacinada e dócil.</p>
+      <button type="button" class="btn-principal">Quero Adotar</button>
+    </div>
+
+    <div class="card-pet">
+      <h4>Oliver (Gato - 6 meses)</h4>
+      <p>Filhote brincalhão e carinhoso.</p>
+      <button type="button" class="btn-principal">Quero Adotar</button>
+    </div>
+
+    <hr>
+
+    <h3>Solicitar Resgate</h3>
+    <form>
+      <div class="campo">
+        <label>Endereço / Local:</label>
+        <input type="text">
+      </div>
+      <div class="campo">
+        <label>Situação:</label>
+        <textarea rows="2"></textarea>
+      </div>
+      <button type="button" class="btn-principal">Enviar Pedido de Resgate</button>
+    </form>
+  </div>
+
+  <script>
+    function mudarAba(idAba) {
+      let abas = document.getElementsByClassName('aba');
+      for (let i = 0; i < abas.length; i++) {
+        abas[i].classList.remove('ativa');
+      }
+      let botoes = document.querySelectorAll('.menu button');
+      for (let i = 0; i < botoes.length; i++) {
+        botoes[i].classList.remove('active');
+      }
+      document.getElementById('aba-' + idAba).classList.add('ativa');
+      document.getElementById('btn-' + idAba).classList.add('active');
+    }
+
+    function mudarSubAba(idSub) {
+      let subAbas = document.getElementsByClassName('sub-aba');
+      for (let i = 0; i < subAbas.length; i++) {
+        subAbas[i].classList.remove('ativa');
+      }
+      let botoes = document.querySelectorAll('.sub-menu button');
+      for (let i = 0; i < botoes.length; i++) {
+        botoes[i].classList.remove('active');
+      }
+      document.getElementById('subaba-' + idSub).classList.add('ativa');
+      document.getElementById('subbtn-' + idSub).classList.add('active');
+    }
+  </script>
+</body>
+</html>
